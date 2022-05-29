@@ -26,8 +26,28 @@ module.exports = (function () {
     });
 
     await browser.close();
-
-    const news = firstRow.map((e, i) => [e, secondrow[i], rowHref[i]]);
+    let news = {};
+    let currentDate;
+    firstRow.map((e, i) => {
+      const newsSplit = e.split(" ");
+      let date;
+      let time;
+      if (newsSplit.length === 2) {
+        date = newsSplit[0];
+        time = newsSplit[1];
+        currentDate = date;
+      } else {
+        date = currentDate;
+        time = newsSplit[0];
+      }
+      const timeObj = {
+        [time]: {
+          title: secondrow[i],
+          link: rowHref[i],
+        },
+      };
+      news[date] = Object.assign(timeObj, news[date]);
+    });
     return await news;
   };
   return service;
