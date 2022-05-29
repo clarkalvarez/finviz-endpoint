@@ -77,7 +77,12 @@ module.exports = (function () {
     stockDetails["image"] = { value: imageChart };
 
     await browser.close();
-    return stockDetails;
+    const returnedData = {
+      [stockCode]: {
+        stockDetails,
+      },
+    };
+    return returnedData;
   };
   return service;
 })();

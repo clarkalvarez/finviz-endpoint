@@ -26,7 +26,9 @@ module.exports = (function () {
     });
 
     await browser.close();
-    let news = {};
+    let news = {
+      [stockCode]: {},
+    };
     let currentDate;
     firstRow.map((e, i) => {
       const newsSplit = e.split(" ");
@@ -46,7 +48,7 @@ module.exports = (function () {
           link: rowHref[i],
         },
       };
-      news[date] = Object.assign(timeObj, news[date]);
+      news[stockCode][date] = Object.assign(timeObj, news[date]);
     });
     return await news;
   };
