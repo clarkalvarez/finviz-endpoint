@@ -2,8 +2,14 @@ const express = require("express");
 const { news } = require("./news");
 const { stockInfo } = require("./stockInfo");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
+const cors = require("cors");
 
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 app.get("/news", async (req, res) => {
   const stockCode = req.query.stockCode;
   const response = await news(stockCode);
