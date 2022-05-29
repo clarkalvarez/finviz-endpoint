@@ -75,14 +75,9 @@ module.exports = (function () {
     const chart = await page.$(".interactive-chart");
     const imageChart = await chart.screenshot({ encoding: "base64" });
     stockDetails["image"] = { value: imageChart };
-
+    stockDetails["stockCode"] = { value: stockCode };
     await browser.close();
-    const returnedData = {
-      [stockCode]: {
-        stockDetails,
-      },
-    };
-    return returnedData;
+    return stockDetails;
   };
   return service;
 })();
