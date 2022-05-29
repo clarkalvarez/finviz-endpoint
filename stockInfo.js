@@ -44,7 +44,7 @@ module.exports = (function () {
 
       const changeColor = document.querySelector(
         ".snapshot-table2 tbody tr:nth-child(12) td:nth-child(12) b span"
-      ).classList;
+      ).classList[0];
 
       return {
         marketcap: {
