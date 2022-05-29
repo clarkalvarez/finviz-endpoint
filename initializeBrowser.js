@@ -4,7 +4,10 @@ module.exports = (function () {
   const service = {};
 
   service.initializeBrowser = async function (stockCode) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    });
     const page = await browser.newPage();
 
     await Promise.all([
